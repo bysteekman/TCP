@@ -1,0 +1,16 @@
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game.deps.json
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game.runtimeconfig.json
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game.runtimeconfig.dev.json
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game.dll
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/ref/network-console-game.dll
+/home/intern/Desktop/TcpListner/network-console-game/bin/Debug/net5.0/network-console-game.pdb
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.csproj.AssemblyReference.cache
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.GeneratedMSBuildEditorConfig.editorconfig
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.AssemblyInfoInputs.cache
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.AssemblyInfo.cs
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.csproj.CoreCompileInputs.cache
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.dll
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/ref/network-console-game.dll
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.pdb
+/home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.genruntimeconfig.cache
