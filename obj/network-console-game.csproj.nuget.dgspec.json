@@ -1,30 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "/home/intern/Desktop/TcpListner/network-console-game/network-console-game.csproj": {}
+    "C:\\Users\\user\\InterLinkCamp\\TCP\\network-console-game.csproj": {}
   },
   "projects": {
-    "/home/intern/Desktop/TcpListner/network-console-game/network-console-game.csproj": {
+    "C:\\Users\\user\\InterLinkCamp\\TCP\\network-console-game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/intern/Desktop/TcpListner/network-console-game/network-console-game.csproj",
+        "projectUniqueName": "C:\\Users\\user\\InterLinkCamp\\TCP\\network-console-game.csproj",
         "projectName": "network-console-game",
-        "projectPath": "/home/intern/Desktop/TcpListner/network-console-game/network-console-game.csproj",
-        "packagesPath": "/home/intern/.nuget/packages/",
-        "outputPath": "/home/intern/Desktop/TcpListner/network-console-game/obj/",
+        "projectPath": "C:\\Users\\user\\InterLinkCamp\\TCP\\network-console-game.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\InterLinkCamp\\TCP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/intern/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -35,8 +34,7 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
           "imports": [
             "net461",
             "net462",
@@ -52,7 +50,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.414\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,13 @@
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.csprojAssemblyReference.cache
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.AssemblyInfoInputs.cache
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.AssemblyInfo.cs
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.csproj.CoreCompileInputs.cache
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.exe
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.deps.json
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.runtimeconfig.json
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.runtimeconfig.dev.json
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.dll
+C:\Users\user\InterLinkCamp\TCP\bin\Debug\netcoreapp3.1\network-console-game.pdb
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.dll
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.pdb
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\netcoreapp3.1\network-console-game.genruntimeconfig.cache

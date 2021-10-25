@@ -1,105 +1,91 @@
 using System;
-namespace 
-class Game
-    {
-        public char firstPlayer;
-        public char secondPlayer;
-        public int turn;
-        public bool findWinner;
-        private char[,] fields = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
-        public char GameStatus()
+using System.Collections.Generic;
+namespace tcp_listeener
+{
+    class Game
         {
-            int noEmpty = 0;
-            if (fields[0, 0] != ' ' && fields[1, 1] == fields[2, 2] && fields[0, 0] == fields[1, 1])
+        public bool CheckGameStatus(bool findWinner, int turn, char[,] fields, List<NetworkPlayer> players)
+        {
+            if(GameStatus(findWinner, turn, fields) == '/')
             {
-                findWinner = true;
-                return fields[0, 0];
+                players[0].writer.WriteLine("Draw");
+                players[1].writer.WriteLine("Draw");
+                return true;
             }
-            if (fields[0, 2] != ' ' && fields[1, 1] == fields[2, 0] && fields[0, 2] == fields[1, 1])
+            if(GameStatus(findWinner, turn, fields) == players[0].gameSymbol)
             {
-                findWinner = true;
-                return fields[0, 2];
+                players[0].writer.WriteLine("{0} is winner", players[0].name);
+                players[1].writer.WriteLine("{0} is winner", players[0].name);
+                return true;
             }
-            for (int i = 0; i < fields.GetLength(0); i++)
+            if(GameStatus(findWinner, turn, fields) == players[1].gameSymbol)
             {
-                if (fields[i, 0] != ' ' && fields[i, 1] == fields[i, 2] && fields[i, 0] == fields[i, 1])
+                players[0].writer.WriteLine("{0} is winner", players[1].name);
+                players[1].writer.WriteLine("{0} is winner", players[1].name);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public char GameStatus(bool findWinner, int turn, char[,] fields)
+            {
+                int noEmpty = 0;
+                if (fields[0, 0] != ' ' && fields[1, 1] == fields[2, 2] && fields[0, 0] == fields[1, 1])
                 {
-                    findWinner = true;
-                    return fields[i, 0];
+                    return fields[0, 0];
                 }
-                if (fields[0, i] != ' ' && fields[1, i] == fields[2, i] && fields[0, i] == fields[1, i])
+                if (fields[0, 2] != ' ' && fields[1, 1] == fields[2, 0] && fields[0, 2] == fields[1, 1])
                 {
-                    findWinner = true;
-                    return fields[0, i];
+                    return fields[0, 2];
                 }
-                for (int j = 0; j < fields.GetLength(0); j++)
+                for (int i = 0; i < fields.GetLength(0); i++)
                 {
-                    if (fields[i, j] != ' ')
+                    if (fields[i, 0] != ' ' && fields[i, 1] == fields[i, 2] && fields[i, 0] == fields[i, 1])
                     {
-                        noEmpty++;
+
+                        return fields[i, 0];
                     }
-                    else
+                    if (fields[0, i] != ' ' && fields[1, i] == fields[2, i] && fields[0, i] == fields[1, i])
                     {
-                        j += 2;
+
+                        return fields[0, i];
+                    }
+                    for (int j = 0; j < fields.GetLength(0); j++)
+                    {
+                        if (fields[i, j] != ' ')
+                        {
+                            noEmpty++;
+                        }
+                        else
+                        {
+                            j += 2;
+                        }
                     }
                 }
-            }
-            if (noEmpty != 9 && findWinner == false)
-            {
-                return turn % 2 == 0 ? 'X' : 'O';
-            }
-            if (noEmpty == 9)
-            {
-                return '/';
-            }
-            else
-            {
-                return '*';
-            }
-        }
-        public char Turn((int, int) coords)
-        {
-            int rt = turn;
-            turn++;
-            var (x, y) = coords;
-            if (fields[x, y] == ' ')
-            {
-                return rt % 2 == 0 ? fields[x, y] = firstPlayer : fields[x, y] = secondPlayer;
-            }
-            else
-            {
-                if (findWinner != true)
+                if (noEmpty == 9 && findWinner == false)
                 {
-                    turn--;
-                    return '-';
+                    return '/';
                 }
-                else { return '!'; }
-            }
-        }
-        static void writeField(char[,] fild)
-        {
-            for (int i = 0; i < fild.GetLength(0); i++)
-            {
-                for (int j = 0; j < fild.GetLength(1); j++)
+                else
                 {
-                    Console.Write(j < 2 ? fild[i, j] + "|" : fild[i, j]);
+                    return '|';
                 }
-                Console.Write(i < 2 ? "\n" + new string('-', 5) + "\n" : "\n");
             }
-        }
-        static (int, int) TakeCoord()
-        {
-            string[] takeCord = reader;
-            if (takeCord.Length == 2)
-            {
-                int x = Convert.ToInt32(takeCord[0]) - 1;
-                int y = Convert.ToInt32(takeCord[1]) - 1;
-                return (x, y);
+        public void WriteField(char[,] fild, List<NetworkPlayer> players){
+            string getField = "";
+            for(int i = 0; i < fild.GetLength(0); i++){
+                for(int j = 0; j < fild.GetLength(1); j++){
+                    getField += j < 2 ? fild[i,j] + "|" : $"{fild[i,j]}";
+                }
+                if(i < 2)
+                {
+                    getField += Environment.NewLine + "-+-+-" + Environment.NewLine;
+                }
             }
-            else
-            {
-                Console.WriteLine("Invalid value");
-                return TakeCoord();
-            }
+            players[0].writer.WriteLine($"{getField}");
+            players[1].writer.WriteLine($"{getField}");
         }
     }
+}

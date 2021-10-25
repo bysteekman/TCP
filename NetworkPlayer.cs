@@ -8,47 +8,59 @@ namespace tcp_listeener
 {
     internal class NetworkPlayer
     {
-        TcpClient client;
-        string name;
-        char gameSymbol;
-        NetworkStream stream;
-        StreamReader reader;
-        StreamWriter writer;
+        public TcpClient client;
+        public string name;
+        public char gameSymbol;
+        internal NetworkStream stream;
+        internal StreamReader reader;
+        internal StreamWriter writer;
         public NetworkPlayer(TcpClient client)
         {
             this.client = client;
         }
-        public void StartReading()
+        public void StartStream()
         {
             stream = client.GetStream();
             this.reader = new StreamReader(stream);
+            this.writer = new StreamWriter(stream);
+            writer.AutoFlush = true;
         }
         public void AskName()
         {
-            StartReading();
-            Console.WriteLine("Enter your name:");
+            writer.WriteLine("Enter your name:");
             this.name = reader.ReadLine();
         }
         public void AskChar()
         {
-            StartReading();
-            Console.WriteLine("Enter your char:");
-            this.name = reader.ReadLine();
+            writer.WriteLine("Enter your char:");
+            char[] readed = reader.ReadLine().ToCharArray();
+            this.gameSymbol = readed[0];
+        }
+        public void MakeTurn(bool turn, char[,] fields)
+        {
+                if(turn)
+                {
+                    writer.WriteLine("Your turn:");
+                    Turn(fields);
+                }
+                else
+                {
+                    writer.WriteLine("Enemy turn");
+                }
         }
         public void Turn(char[,] fields)
         {
-            StartReading();
             string takeCord = reader.ReadLine();
-            takeCord.Split(" ");
-            int x = Convert.ToInt32(takeCord[0]) - 1;
-            int y = Convert.ToInt32(takeCord[1]) - 1;
+            string[] nice = takeCord.Split(" ");
+            int x = Convert.ToInt32(nice[0]) - 1;
+            int y = Convert.ToInt32(nice[1]) - 1;
             if (fields[x, y] == ' ')
             {
                 fields[x, y] = gameSymbol;
             }
             else
             {
-                Console.WriteLine("Invalid value");
+                writer.WriteLine("Invalid value");
                 Turn(fields);
             }
         }

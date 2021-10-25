@@ -14,3 +14,4 @@
 /home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/ref/network-console-game.dll
 /home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.pdb
 /home/intern/Desktop/TcpListner/network-console-game/obj/Debug/net5.0/network-console-game.genruntimeconfig.cache
+C:\Users\user\InterLinkCamp\TCP\obj\Debug\net5.0\network-console-game.pdb
