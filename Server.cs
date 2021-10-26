@@ -31,13 +31,12 @@ namespace tcp_listeener
                 while (true)
                 {
                     List<NetworkPlayer> players = new List<NetworkPlayer>();
-                    int turn = 0;
-                    bool findWinner = false;
-                    char[,] fields = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+                    game.turn = 0;
+                    game.findWinner = false;
 
                     // Perform a blocking call to accept requests.
                     // You could also use server.AcceptSocket() here.
-                    while(players.Count != 2)
+                    while (players.Count != 2)
                     {
                         Console.Write("Waiting for a connection... ");
                         TcpClient client = server.AcceptTcpClient();
@@ -51,31 +50,23 @@ namespace tcp_listeener
 
 
                     // Loop to receive all the data sent by the client.
-                    while (findWinner == false)
+                    while (!game.findWinner)
                     {
-                        if(turn%2 == 0)
-                        {
-                            game.WriteField(fields, players);
-                            players[1].MakeTurn(false, fields);
-                            findWinner = game.CheckGameStatus(findWinner, turn, fields, players);
-                            players[0].MakeTurn(true, fields);
-                            findWinner = game.CheckGameStatus(findWinner, turn, fields, players);
-                        }
-                        else
-                        {
-                            game.WriteField(fields, players);
-                            players[0].MakeTurn(false, fields);
-                            findWinner = game.CheckGameStatus(findWinner, turn, fields, players);
-                            players[1].MakeTurn(true, fields);
-                            findWinner = game.CheckGameStatus(findWinner, turn, fields, players);
-                        }
-                        turn++;
+                        var (active, waiting) = game.turn % 2 == 0 ? (0, 1) : (1, 0);
+                        game.WriteField(players);
+                        players[waiting].EnemyTurn();
+                        game.CheckGameStatus(players);
+                        players[active].MakeTurn(game.fields);
+                        game.CheckGameStatus(players);
+                        game.turn++;
                     }
 
-                    foreach(NetworkPlayer player in players)
+                    foreach (NetworkPlayer player in players)
                     {
                         player.client.Close();
                     }
+                    game.NewGame();
+                    game.findWinner = false;
                 }
             }
             catch (SocketException e)

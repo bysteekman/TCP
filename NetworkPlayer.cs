@@ -36,17 +36,14 @@ namespace tcp_listeener
             char[] readed = reader.ReadLine().ToCharArray();
             this.gameSymbol = readed[0];
         }
-        public void MakeTurn(bool turn, char[,] fields)
+        public void MakeTurn(char[,] fields)
         {
-                if(turn)
-                {
                     writer.WriteLine("Your turn:");
                     Turn(fields);
-                }
-                else
-                {
-                    writer.WriteLine("Enemy turn");
-                }
+        }
+        public void EnemyTurn()
+        {
+            writer.WriteLine("Enemy turn");
         }
         public void Turn(char[,] fields)
         {

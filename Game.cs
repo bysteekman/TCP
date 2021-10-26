@@ -3,33 +3,37 @@ using System.Collections.Generic;
 namespace tcp_listeener
 {
     class Game
+    {
+        public int turn;
+        public bool findWinner;
+        public char[,] fields = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+        public void NewGame()
         {
-        public bool CheckGameStatus(bool findWinner, int turn, char[,] fields, List<NetworkPlayer> players)
+            char[,] field = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+            fields = field;
+        }
+        public void CheckGameStatus(List<NetworkPlayer> players)
         {
-            if(GameStatus(findWinner, turn, fields) == '/')
+            if(GameStatus() == '/')
             {
                 players[0].writer.WriteLine("Draw");
                 players[1].writer.WriteLine("Draw");
-                return true;
+                findWinner = true;
             }
-            if(GameStatus(findWinner, turn, fields) == players[0].gameSymbol)
+            if(GameStatus() == players[0].gameSymbol)
             {
                 players[0].writer.WriteLine("{0} is winner", players[0].name);
                 players[1].writer.WriteLine("{0} is winner", players[0].name);
-                return true;
+                findWinner = true;
             }
-            if(GameStatus(findWinner, turn, fields) == players[1].gameSymbol)
+            if(GameStatus() == players[1].gameSymbol)
             {
                 players[0].writer.WriteLine("{0} is winner", players[1].name);
                 players[1].writer.WriteLine("{0} is winner", players[1].name);
-                return true;
-            }
-            else
-            {
-                return false;
+                findWinner = true;
             }
         }
-        public char GameStatus(bool findWinner, int turn, char[,] fields)
+        public char GameStatus()
             {
                 int noEmpty = 0;
                 if (fields[0, 0] != ' ' && fields[1, 1] == fields[2, 2] && fields[0, 0] == fields[1, 1])
@@ -64,7 +68,7 @@ namespace tcp_listeener
                         }
                     }
                 }
-                if (noEmpty == 9 && findWinner == false)
+                if (noEmpty == 9 && !findWinner)
                 {
                     return '/';
                 }
@@ -73,11 +77,11 @@ namespace tcp_listeener
                     return '|';
                 }
             }
-        public void WriteField(char[,] fild, List<NetworkPlayer> players){
+        public void WriteField(List<NetworkPlayer> players){
             string getField = "";
-            for(int i = 0; i < fild.GetLength(0); i++){
-                for(int j = 0; j < fild.GetLength(1); j++){
-                    getField += j < 2 ? fild[i,j] + "|" : $"{fild[i,j]}";
+            for(int i = 0; i < fields.GetLength(0); i++){
+                for(int j = 0; j < fields.GetLength(1); j++){
+                    getField += j < 2 ? fields[i,j] + "|" : $"{fields[i,j]}";
                 }
                 if(i < 2)
                 {
